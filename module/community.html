@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Favicon -->
+        <link href="../svg/binance.svg" rel="icon">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- External stylesheet -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+        <title>BNB CoinTracker</title>
+    </head>
+    <body>
+        <div class="parent-container">
+            <!-- Fixed Menu Container -->
+            <div class="fixed-nav-menu" id="home-menu">
+                <div class="fixed-nav-absolute" onclick="homeClose()"></div>
+                <div class="fixed-nav-con">
+                    <div class="menu-con">
+                        <!-- Header con --><!-- Navbar container -->
+                        <div class="menu-nav-wrap">
+                            <div class="container">
+                                <div class="menu-nav-con">
+                                    <!-- Web image-->
+                                    <div class="menu-nav-web-img"><img src="../svg/binance.svg" alt="logo" class="img-fluid"></div>
+                                    <!-- Exit menu icon-->
+                                    <div class="menu-nav-exit-img" onclick="homeClose()"><img src="../svg/exit.svg" alt="logo" class="img-fluid"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu link container -->
+                        <div class="menu-link-wrap">
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='../index.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/home.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Home</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='module/market.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/market.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Markets</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con"  onclick="document.location.href='app.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/appfeat.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">App Features</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con menu-active">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/communitymenu.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Binance Community</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='js/sup.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/support.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Support</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='policy.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/policy.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Privacy Policy</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div style="width: 100%;height: auto;">
+                        <div class="menu-link-line"></div>
+                        <div class="header-con third-section mx-auto mt-5">
+                            <div class="nav-btn" onclick="document.location.href='downloadapp.html'">Download App</div>
+                            <div class="nav-btn" onclick="document.location.href='index.html'">Sign In</div>
+                        </div>
+                    </div>
+                    <div class="menu-con"></div>
+                </div>
+            </div>
+            
+
+            <!-- -------------------- -------------------- -------------------- -->
+            <!-- <button id="installApp">Download BNB CoinTracker app</button> -->
+            <div class="dlw-parent-con">
+                
+                <div class="header-nav" id="download-header-nav">
+                    <div class="container">
+                        <div class="header-main-nav">
+                            <!-- First container -->
+                            <div class="header-con first-section" onclick="document.location.href='../index.html'">
+                                <div class="nav-logo-img">
+                                    <img src="../svg/binance.svg" alt="logo" class="img-fluid">
+                                </div>
+                                <span class="nav-wen-name">BNB CoinTracker</span>
+                            </div>
+                            
+                            <!-- Second container -->
+                            <div class="header-con second-section">
+                                <div class="lg-nav-link nav-unactive" onclick="document.location.href='../index.html'">Home</div>
+                            <div class="lg-nav-link nav-unactive" onclick="document.location.href='module/market.html'">Markets</div>
+                                <div class="lg-nav-link nav-unactive" onclick="document.location.href='app.html'">App Features</div>
+                                <div class="lg-nav-link nav-active">Community</div>
+                                <div class="lg-nav-link nav-unactive" onclick="document.location.href='js/sup.html'">Support</div>
+                                <div class="lg-nav-link nav-unactive" onclick="document.location.href='policy.html'">Privacy Policy</div>
+                            </div>
+        
+                            <!-- Third container -->
+                            <div class="header-con third-section">
+                                <div class="nav-menu mobile-menu" onclick="homeOpen()"><img src="../svg/menu.svg" alt="menu" class="img-fluid"></div>
+                                <div class="nav-btn menu-mobile" onclick="document.location.href='downloadapp.html'">Download App</div>
+                                <div class="nav-btn menu-last" onclick="document.location.href='index.html'">Sign In</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+
+
+
+
+
+                <!--  -->
+                <div class="abst-comm-parent">
+
+                    <!-- Preloader -->
+                    <div id="preloader-background-id" style="justify-content: center;">
+                        <div class="preload">
+                            <img x="0px" y="0px" width="50px" style="position: absolute;" height="50px" src="svg/binance.svg" alt="" srcset="">
+                            <div id="circle-loader"></div>
+                        </div>
+                        <div class="dashboard-hover-message-id" id="dashboard-hover-connect">
+                            <img class="dashboard-hover-img" src="svg/bulletred.svg">
+                            <span>Make sure to have a stable network </span>
+                        </div>
+                    </div>
+
+
+                    <div class="left-abst-comm-parent">
+                        <div class="message-page-display">
+                            <div class="help-header-wrap dark-color">
+                                <div class="container">
+                                    <div class="help-header-container">
+                                        <div class="help-left-container">
+                                            <div class="community-header-img btn-display-clone">
+                                            </div>
+                                            <div class="comm-head-wrap pointer-event" onclick="document.location.href='index.html'">
+                                                <div class="comm-head-container">
+                                                    <div class="comm-head-img">
+                                                        <img src="svg/binance.svg" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                                <div class="comm-head-container">
+                                                    <div class="comm-head-text comm-head-lg-text">
+                                                        BNB CoinTracker
+                                                    </div>
+                                                    <div class="comm-head-text comm-head-sm-text">
+                                                        <span id="community-member-num">0</span> <span style="font-weight: 700;">·</span> Members
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="help-header-img-right btn-display" onclick="document.location.href='index.html'">
+                                            <img src="svg/dots.svg" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="chat-stagnant-container">
+                                <div class="comm-main-wrap">
+                                    <div class="comm-main-con" id="community-conversation-loader">
+                                        <div class="container">
+                                            <div class="container">
+                                                <div class="container mb-2">
+                                                    <div class="loading" id="community-loading">
+                                                        <div class="ball"></div>
+                                                        <div class="ball"></div>
+                                                        <div class="ball"></div>
+                                                        <div class="ball"></div>
+                                                    </div>
+                                                    <div class="member-end-message mb-3" id="community-end-message">Welcome to BNB CoinTracker...</div>
+                                                </div>
+                                                <div class="chat-page-floating-buttons" id="scroll-chat-button">
+                                                    <div class="scroll-chat-button" onclick="scrollChatButton()"><img src="svg/scroll.svg" class="img-fluid"></div>
+                                                </div>
+                                                <div class="member-list-container" id="dashboard-community-post" style="padding-bottom: 1em; opacity: 0; transition: opacity 0.3s ease-in"></div>
+                                                <div id="client-side-scrollpoint"></div>
+                                            </div>   
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="comm-chat-bottom" onclick="document.location.href='index.html'">
+                                    <div class="container">
+                                        <div class="receive-send-link-btn">
+                                            <div class="receive-send-left-wrap">
+                                                <div class="receive-send-left-img">
+                                                    <img src="svg/user.svg" class="img-fluid">
+                                                </div>
+                                                <span class="receive-send-txt">Join Binance Community Now</span>
+                                            </div>
+                                            <div class="comm-chat-right-wrap">
+                                                <div class="receive-send-right-img" style="transform: rotate(180deg)">
+                                                    <img src="svg/chevronb.svg" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <!--  -->
+                    <div class="right-abst-comm-parent">
+                        <!-- FORGET PASSWORD STRUCTURE -->
+                        <div class="forget-password-page-display">
+                            <!-- -------------------- Header container -------------------- -->
+                            <div class="help-header-wrap dark-color">
+                                <div class="container">
+                                    <div class="help-header-container">
+                                        <!-- Left container-->
+                                        <div class="help-left-container">
+                                            <span class="help-header-txt" id="send-sss-header-txt">Community</span>
+                                        </div>
+                                        <!-- Right container-->
+                                        <div id="community-header-img"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- -------------------- -------------------- -------------------- -->
+                            <!-- -------------------- -------------------- -------------------- -->
+
+
+
+
+                            <!-- -------------------- Header container -------------------- -->
+                            <div class="bio-main-wrap">
+                                <div class="comment-main-con" id="member-scrollbar-event" style="padding-bottom: 1em">
+
+                                    <div id="member-page-scrollpoint"></div>
+                                    
+                                    <div class="container">
+                                        <!-- -------------------- Founder Image container -------------------- -->
+                                        <div class="community-detail-wrap">
+                                            <div class="community-img-wrap">
+                                                <div class="community-img">
+                                                    <img src="svg/binance.svg" class="img-fluid">
+                                                </div>
+                                            </div>
+                                            <!---->
+                                            <div class="community-name">BNB CoinTracker Community</div>
+                                            <div class="community-status"><span id="forgot-member-num">0</span> · Members</div>
+                                        </div>
+                                        <!-- -------------------- -------------------- -------------------- -->
+                                        <!-- -------------------- -------------------- -------------------- -->
+                                    </div>
+                                    
+                                    
+                                    <div class="community-btn-wrap">
+                                        <!-- Button -->
+                                        <div class="community-btn-con" onclick="document.location.href='js/sup.html'">
+                                            <div class="container">
+                                                <div class="community-btn">
+                                                    <div class="receive-send-link-btn one-line">Contact Community Admin</div>
+                                                    <div class="receive-send-right-img" style="transform: rotate(180deg)">
+                                                        <img src="svg/chevron.svg" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <!-- Members container -->
+                                    <div class="member-list-container" id="community-conversation-container" style="padding-top: 1em;"></div>
+                                    
+                                    <!-- Loading Data -->
+                                    <div class="container">
+                                        <div class="loading" id="member-loading">
+                                            <div class="ball"></div>
+                                            <div class="ball"></div>
+                                            <div class="ball"></div>
+                                            <div class="ball"></div>
+                                        </div>
+                                        <div class="member-end-message" id="member-end-message">Sorry, you can go no further...</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- -------------------- -------------------- -------------------- -->
+                            <!-- -------------------- -------------------- -------------------- -->
+
+                        </div>
+                        <!--  -------------------- -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <!-- Firebase configuration must be loaded first -->
+    <script src="js/firebase.js"></script>
+    <!-- Initialize Firebase -->
+    <script>
+        // Check if Firebase configuration exists
+        if (typeof firebaseConfig === 'undefined') {
+            console.error('Firebase configuration is not loaded');
+            alert('Error: Firebase configuration not found');
+        } else {
+            // Initialize Firebase if not already initialized
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+                console.log('Firebase initialized successfully');
+            }
+        }
+    </script>
+    <script src="js/firebase.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        // Menu toggle functions
+        function homeOpen() {
+            const menu = document.getElementById("home-menu");
+            if (menu) {
+                menu.style.display = "flex";
+            }
+        }
+
+        function homeClose() {
+            const menu = document.getElementById("home-menu");
+            if (menu) {
+                menu.style.display = "none";
+            }
+        }
+
+        function scrollChatButton() {
+            var elem = document.getElementById("client-side-scrollpoint");
+            elem.scrollIntoView()
+        }
+
+
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if Firebase is initialized
+            if (!firebase.apps.length) {
+                console.error('Firebase not initialized');
+                return;
+            }
+            
+            // Then initialize community
+            initializeCommunity();
+
+            // Set up Firebase post listener
+            setupPostListener();
+        });
+
+        // Helper functions
+        function getNthWord(string, n) {
+            const words = string.split(' ');
+            return words[n - 1];
+        }
+
+        function getTimeFormat(time) {
+            const [hours, minutes] = time.split(':');
+            const date = new Date();
+            date.setHours(hours);
+            date.setMinutes(minutes);
+            return date.toLocaleTimeString('en-US', { 
+                hour: 'numeric', 
+                minute: '2-digit',
+                hour12: true 
+            });
+        }
+
+        // Message Page variables
+        var postScrollableElement;
+        var postScrollableNumber;
+        var postBoolean = false;
+        var postTotalList;
+        var clientPostUid;
+        var numberViews;
+
+        function postScrollNumberFunc() {
+            postScrollableNumber = postTotalList;
+        }
+
+        function postScrollable() {
+            postScrollableNumber = postScrollableNumber - 10;
+            if (postScrollableNumber >= 0) {
+                return postScrollableNumber;
+            } else {
+                return postScrollableNumber = 0;
+            }
+        }
+
+        // Format numbers (e.g., 1000 -> 1k)
+        function nFormatter(num) {
+            if (num >= 1000000000) {
+                return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
+            }
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+            }
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+            }
+            return num;
+        }
+
+        // Community page functionality
+        let memberScrollableNumber = 15;
+        let memberTotalList = 0;
+        let isLoading = false;
+
+        // Post loading functionality
+        const postContainer = document.getElementById('dashboard-community-post');
+        const postLoader = document.getElementById('community-conversation-loader');
+        const loadingElement = document.getElementById('community-loading');
+        const endMessageElement = document.getElementById('community-end-message');
+        
+        let isLoadingPosts = false;
+        let currentPostCount = 10;
+        const postsPerLoad = 10;
+        
+        // Initialize post loading
+        function initializePostLoading() {
+            postScrollableNumber = 0;
+            loadMorePosts();
+        }
+
+        // Function to load more posts
+        function loadMorePosts() {
+            if (isLoadingPosts) return;
+            
+            isLoadingPosts = true;
+            if (loadingElement) loadingElement.style.display = 'flex';
+            if (endMessageElement) endMessageElement.style.display = 'none';
+
+            // Get posts with pagination
+            firebase.database().ref('post')
+                .limitToLast(currentPostCount)
+                .once('value', function(snapshot) {
+                    if (!snapshot || !snapshot.val()) {
+                        if (loadingElement) loadingElement.style.display = 'none';
+                        if (endMessageElement) {
+                            endMessageElement.style.display = 'flex';
+                            endMessageElement.textContent = 'No more posts to load...';
+                        }
+                        isLoadingPosts = false;
+                        return;
+                    }
+
+                    const posts = snapshot.val();
+                    updatePostDisplay(posts);
+                    
+                    isLoadingPosts = false;
+                    if (loadingElement) loadingElement.style.display = 'none';
+                    currentPostCount += postsPerLoad;
+                });
+        }
+
+        // Message display functionality
+        function dateClass(element) {
+            var one = getNthWord(element, 1);
+            var two = getNthWord(element, 2);
+            var three = getNthWord(element, 3);
+            var result = `${one}${two}${three}`;
+            return result;
+        }
+
+        function postTotalListFunc(params) {
+            postTotalList = params - 10;
+            if(postBoolean === false) {
+                postScrollNumberFunc();
+                postBoolean = true;
+            }
+        }
+
+        // Set up Firebase post listener
+        function setupPostListener() {
+            let postUpdateRef = firebase.database().ref('post');
+            postUpdateRef.on('value', function(snapshot) {
+                if (!snapshot) {
+                    console.error('No data available');
+                    return;
+                }
+                postDatabase = snapshot.val() || {};
+                var tempPostdata = {};
+                
+                // Clear the loading state
+                const loadingElement = document.getElementById('community-loading');
+                if (loadingElement) loadingElement.style.display = 'none';
+                for (const i in postDatabase) {
+                    const element = postDatabase[i].date;
+                    var currentDate = new Date();
+                    var expiry = new Date(`${element}`);
+                    if (currentDate.getTime() >= expiry.getTime()) {
+                        tempPostdata[i] = postDatabase[i];
+                    }
+                }
+                const objLength = Object.keys(tempPostdata).length;
+                postTotalListFunc(objLength);
+                var dataSaver = Object.fromEntries(Object.entries(tempPostdata).slice(postScrollableNumber, objLength));
+                var chatDatabase = dataSaver;
+                var chatPrint = "";
+
+                for (let i in chatDatabase) {
+                    var commentPostdata = {};
+                    var commentMainData = chatDatabase[i].comment;
+                    for(let x in commentMainData) {
+                        const element = commentMainData[x].date;
+                        var currentDate = new Date();
+                        var expiry = new Date(`${element}`);
+                        if (currentDate.getTime() >= expiry.getTime()) {
+                            commentPostdata[x] = commentMainData[x];
+                        }
+                    }
+                    var commentLength = Object.keys(commentPostdata).length;
+                    
+                    chatPrint += `
+                        <div class="post-parent-main-con">
+                            <div class="comm-post-date chat-client-datedisplay hide-date-display ${dateClass(`${chatDatabase[i].date}`)}client" id="${chatDatabase[i].date}">
+                                ${getNthWord(chatDatabase[i].date, 2).slice(0, -1)} · ${getNthWord(chatDatabase[i].date, 1)}
+                            </div>
+
+                            <div class="comm-message comm-post" onclick="document.location.href='index.html'" data-message-id="${i}">
+                                <div style="overflow: hidden;">
+                                    <img src="${chatDatabase[i].posturl}" class="post-img">
+                                    <div class="container">
+                                        <div class="post-txt">
+                                            ${chatDatabase[i].postmessage}
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="metadata">
+                                            <div class="comm-post-view"><img class="comm-post-view-img" src="svg/eye.svg"><span>${nFormatter(Number(commentLength) * Number(chatDatabase[i].num))}</span></div>
+                                            <span class="time message-page-time one-line">${getTimeFormat(getNthWord(chatDatabase[i].date, 4))}</span>
+                                        </div>
+                                    </div>
+                                    <!-- Bottom container -->
+                                    <div class="comm-post-line"><div class="container"><div class="comm-seperation-line"></div></div></div>
+                                    <div class="container">
+                                        <div class="receive-send-link-btn messsage-comment-link-btn">
+                                            <div class="receive-send-left-wrap" style="margin-right: 0.75em;align-items: center;">
+                                                <div class="comm-left-img">
+                                                    <img src="svg/comment.svg" class="img-fluid">
+                                                </div>
+                                                <span class="comm-comment-txtlink one-line">${nFormatter(commentLength)} Comments</span>
+                                            </div>
+                                            <div class="comm-right-img" style="transform: rotate(180deg)">
+                                                <img src="svg/chevron.svg" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scroll-to-message-post"></div>
+                    `;
+                }
+                // Update post container if it exists
+                const postContainer = document.getElementById("dashboard-community-post");
+                if (postContainer) {
+                    postContainer.innerHTML = chatPrint;
+                    postContainer.style.opacity = "1";
+                } else {
+                    console.error("Post container not found");
+                }
+
+                // Display Chat container per Date
+                var chatDisplayDate = document.getElementsByClassName("chat-client-datedisplay");
+                for (let i = 0; i < chatDisplayDate.length; i++) {
+                    const element = chatDisplayDate[i].id;
+                    var bioClass = document.getElementsByClassName(`${dateClass(`${element}`)}client`)
+                    for(var x = 0; x < bioClass.length; x++){
+                        bioClass[0].classList.remove("hide-date-display")
+                    }
+                    var currentDate = new Date();
+                    var expiry = new Date(`${element}`);
+                    if (currentDate.getTime() < expiry.getTime()) {
+                        chatDisplayDate[i].style.display = "none"
+                    }
+                }
+
+                // Now that data is loaded and displayed, hide preloader
+                preloader();
+            });
+        }
+
+        // Preloader function
+        function preloader() {
+            document.getElementById("preloader-background-id").style.display = "none";
+            scrollChatButton();
+        }
+
+        // Initialize all functionality
+        function initializeCommunity() {
+
+            // Initialize DOM elements with error handling and retry
+            function initializeElements() {
+                postScrollableElement = document.getElementById('community-conversation-loader');
+                const postContainer = document.getElementById('dashboard-community-post');
+                
+                if (!postScrollableElement || !postContainer) {
+                    // Retry after a short delay if elements aren't found
+                    setTimeout(initializeElements, 100);
+                    return;
+                }
+
+                // Once elements are found, proceed with initialization
+                postContainer.style.opacity = "1";
+                setupScrollListener();
+                loadMembers();
+            }
+
+            // Start the initialization process
+            initializeElements();
+
+            // Set up scroll event listener for infinite scroll
+            function setupScrollListener() {
+                if (!postScrollableElement) return;
+                
+                postScrollableElement.addEventListener('scroll', function() {
+                    if (postScrollableElement.scrollTop <= 0 && !isLoadingPosts) {
+                        // Load more posts when scrolling to top
+                        const loading = document.getElementById('community-loading');
+                        const endMessage = document.getElementById("community-end-message");
+                        
+                        if (postScrollableNumber === 0) {
+                            if (loading) loading.style.display = "none";
+                            if (endMessage) endMessage.style.display = "flex";
+                            return;
+                        }
+
+                        // Show loading indicator
+                        if (loading) loading.style.display = "flex";
+                        if (endMessage) endMessage.style.display = "none";
+
+                        // Load more posts
+                        isLoadingPosts = true;
+                        postScrollable();
+                        
+                        // Fetch more posts from Firebase
+                        firebase.database().ref('post')
+                            .limitToLast(postScrollableNumber + 10)
+                            .once('value', function(snapshot) {
+                                if (!snapshot || !snapshot.val()) {
+                                    if (loading) loading.style.display = "none";
+                                    if (endMessage) endMessage.style.display = "flex";
+                                    isLoadingPosts = false;
+                                    return;
+                                }
+
+                                const posts = snapshot.val();
+                                const postContainer = document.getElementById("dashboard-community-post");
+                                if (postContainer) {
+                                    postContainer.style.opacity = "0";
+                                    setTimeout(() => {
+                                        setupPostListener(); // This will refresh the display with new data
+                                        postContainer.style.opacity = "1";
+                                        
+                                        // Scroll to the last loaded post in the previous set
+                                        const posts = document.querySelectorAll('.post-parent-main-con');
+                                        if (posts.length > 0) {
+                                            const lastPost = posts[9]; // 10th post (index 9) is the last of the previous set
+                                            if (lastPost) {
+                                                lastPost.scrollIntoView({ behavior: 'auto' });
+                                            }
+                                        }
+                                        
+                                        isLoadingPosts = false;
+                                    }, 300);
+                                }
+                            });
+                    }
+                }, { passive: true });
+            }
+            
+            // Set opacity for post container
+            const postContainer = document.getElementById("dashboard-community-post");
+            if (postContainer) {
+                postContainer.style.opacity = "1";
+            }
+
+            // Initialize post system
+            postScrollNumberFunc();
+            
+            // Start the first data load
+            loadMembers();
+        }
+
+        // Load members from Firebase
+        function loadMembers() {
+            if (isLoading) return;
+            isLoading = true;
+
+            const loadingElement = document.getElementById('member-loading');
+            const endMessageElement = document.getElementById('member-end-message');
+            const container = document.getElementById("community-conversation-container");
+            const messageNum = document.getElementById("community-member-num");
+            const forgotNum = document.getElementById("forgot-member-num");
+
+            loadingElement.style.display = 'flex';
+            endMessageElement.style.display = 'none';
+
+            firebase.database().ref('members').once('value')
+                .then(function(snapshot) {
+                    const members = snapshot.val() || 0;
+                    return firebase.database().ref('member').once('value')
+                        .then(function(element) {
+                            if (!element) {
+                                throw new Error('No member data available');
+                            }
+                            // Process member data
+                            const arrayData = element.val() || {};
+                            const arrayLength = element.numChildren();
+                            const dataSaver = Object.fromEntries(
+                                Object.entries(arrayData).slice(0, memberScrollableNumber)
+                            );
+
+                            let memberPrint = "";
+                            
+                            // Generate member list HTML
+                            for (let i in dataSaver) {
+                                memberPrint += `
+                                    <div class="send-select-token-main-wrap" id="${i}" onclick="document.location.href='index.html'">
+                                        <div class="container">
+                                            <div class="add-token-sub-wrap">
+                                                <div class="message-username-wrap">
+                                                    <div class="message-username" style="background: ${dataSaver[i].color};">
+                                                        ${dataSaver[i].name.charAt(0)}
+                                                    </div>
+                                                </div>
+                                                <div class="hmepg-sub-token-left-wrap">
+                                                    <div class="hmepg-main-token-con" style="margin: 0.5em 0em;">
+                                                        <div class="hmepg-sub-token-left-con">
+                                                            <div class="bio-token-name">${dataSaver[i].name}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hmepg-sub-token-line"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                            
+                            // Update the container with animation
+                            const existingContent = container.innerHTML;
+                            
+                            // Append or replace content
+                            if (memberScrollableNumber > 15) {
+                                container.innerHTML = existingContent + memberPrint;
+                            } else {
+                                container.innerHTML = memberPrint;
+                            }
+                            
+                            // Animate new content
+                            const newItems = container.querySelectorAll('.send-select-token-main-wrap');
+                            newItems.forEach(item => {
+                                item.style.opacity = '0';
+                                setTimeout(() => {
+                                    item.style.transition = 'opacity 0.3s ease-in';
+                                    item.style.opacity = '1';
+                                }, 50);
+                            });
+
+                            // Update member count
+                            const memberNumber = Number(members) * Number(arrayLength);
+                            memberTotalList = arrayLength;
+                            messageNum.innerHTML = nFormatter(memberNumber);
+                            forgotNum.innerHTML = nFormatter(memberNumber);
+                            
+                            // Handle loading states
+                            if (memberScrollableNumber >= arrayLength) {
+                                loadingElement.style.display = 'none';
+                                endMessageElement.style.display = 'flex';
+                            } else {
+                                loadingElement.style.display = 'none';
+                                endMessageElement.style.display = 'none';
+                            }
+
+                            isLoading = false;
+                        });
+                })
+                .catch(function(error) {
+                    console.error("Error loading members:", error);
+                    loadingElement.style.display = 'none';
+                    endMessageElement.style.display = 'flex';
+                    endMessageElement.textContent = 'Error loading members...';
+                    isLoading = false;
+                });
+        }
+
+        // Initial load of members
+        loadMembers();
+
+        // Scroll event for loading more members
+        const scrollContainer = document.getElementById('member-scrollbar-event');
+        if (scrollContainer) {
+            scrollContainer.addEventListener('scroll', function() {
+                const threshold = 5;
+                if (scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight - threshold) {
+                    if (!isLoading && memberScrollableNumber <= memberTotalList) {
+                        memberScrollableNumber += 15;
+                        loadMembers();
+                    }
+                }
+            }, { passive: true });
+        }
+    </script>
+</html>

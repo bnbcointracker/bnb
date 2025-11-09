@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Favicon -->
+        <link href="../svg/binance.svg" rel="icon">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        
+        <!-- External stylesheet -->
+        <link rel="stylesheet" href="./css/bootstrap.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+        <title>BNB CoinTracker</title>
+
+        <!--Start of Chat Script-->
+            <script type="text/javascript">
+                var _smartsupp = _smartsupp || {};
+                _smartsupp.key = 'a3cf74e0de0a40155d46c2f1983191594bb2a699';
+                window.smartsupp||(function(d) {
+                    var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+                    s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+                    c.type='text/javascript';c.charset='utf-8';c.async=true;
+                    c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+                })(document);
+            </script>
+        <!--End of Chat Script-->
+        
+        <link rel="manifest" href="../manifest.json">
+        <script>
+            if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('../sw.js');
+                });
+            }
+        </script>
+
+        <style>
+            @media screen and (max-width: 1000px) {
+                /* */
+                .dlw-img {
+                    padding-top: 5em;
+                } 
+            }
+            @media screen and (min-width: 1020px) {
+                /* */
+                #dlw-row {
+                    flex-direction: row-reverse;
+                } 
+            } 
+            .parent-container{
+                overflow-y: scroll;
+            }
+            /* Scroll bar */
+            ::-webkit-scrollbar { 
+                width: 0.35em;
+                margin: 2em 0;
+            }
+            /* Track */
+            ::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px #b4b4b4; 
+            }
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: var(--setting-yellow); 
+                border-radius: 0.5em;
+            }
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #8a8a8a; 
+            }
+            /* -------------------- */ 
+            /* -------------------- */
+            /* -------------------- -------------------- STYLES CREATED DURING [NOTIFICATION - PAGE] -------------------- -------------------- */
+                /*  */
+                .dlw-top-abs-wrap{
+                    position: absolute;
+                    height: 100%;
+                    padding: 20%;
+                    width: 100%;
+                    background: var(--yellow-background);
+                    border-radius: 50%;
+                }
+                .dlw-main-wrap{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin: auto;
+                    justify-content: center;
+                }
+                .dlw-lg-txt{
+                    font-size: 2em;
+                    text-align: center;
+                    font-weight: 800;
+                }
+                .dlw-md-txt{
+                    font-size: 1.25em;
+                    text-align: center;
+                    font-weight: 600;
+                }
+                .dlw-sm-txt{
+                    font-size: 0.9em;
+                    text-align: center;
+                    font-weight: 600;
+                    padding: 1.5em 0.25em 1em 0.25em;
+                }
+                .dlw-smd-txt{
+                    color: rgb(166, 50, 50);
+                    font-size: 0.9em;
+                    text-align: center;
+                    font-weight: 600;
+                    padding: 0em 0.25em 1.25em 0.25em;
+                }
+                .dlw-sma-txt{
+                    color: rgb(166, 50, 50);
+                    font-size: 0.9em;
+                    font-weight: 600;
+                }
+                .dlw-sma-txt:hover{
+                    color: rgba(166, 50, 50, 0.7);
+                }
+                .dlw-install-btn{
+                    background: var(--black-background);
+                    color: var(--white-font);
+                    font-size: 0.9em;
+                    border-radius: 0.6em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    font-weight: 600;
+                    text-decoration: none;
+                    cursor: pointer;
+                    padding: 0.75em 2.25em;
+                }
+                #Information{
+                    display: none;
+                }
+                .background-color-page{
+                    background: #E8E6EB;
+                }
+                @media (prefers-color-scheme: dark) {
+                    .background-color-page{
+                        background: #2e2c31;
+                    }
+                }
+                /* -------------------- */
+            /* -------------------- -------------------- -------------------- -------------------- -------------------- */
+        </style>
+    </head>
+    <body>
+        <div class="parent-container">
+            <!-- Fixed Menu Container -->
+            <div class="fixed-nav-menu" id="home-menu">
+                <div class="fixed-nav-absolute" onclick="homeClose()"></div>
+                <div class="fixed-nav-con">
+                    <div class="menu-con">
+                        <!-- Header con --><!-- Navbar container -->
+                        <div class="menu-nav-wrap">
+                            <div class="container">
+                                <div class="menu-nav-con">
+                                    <!-- Web image-->
+                                    <div class="menu-nav-web-img"><img src="../svg/binance.svg" alt="logo" class="img-fluid"></div>
+                                    <!-- Exit menu icon-->
+                                    <div class="menu-nav-exit-img" onclick="homeClose()"><img src="../svg/exit.svg" alt="logo" class="img-fluid"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu link container -->
+                        <div class="menu-link-wrap">
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='../index.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/home.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Home</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='market.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/market.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Markets</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='app.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/appfeat.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">App Features</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='./community.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/communitymenu.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Binance Community</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='js/sup.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/support.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Support</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='policy.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/policy.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Privacy Policy</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div style="width: 100%;height: auto;">
+                        <div class="menu-link-line"></div>
+                        <div class="header-con third-section mx-auto mt-5">
+                            <div class="nav-btn" onclick="document.location.href='index.html'">Use App Online</div>
+                        </div>
+                    </div>
+                    <div class="menu-con"></div>
+                </div>
+            </div>
+            
+
+            <!-- -------------------- -------------------- -------------------- -->
+            <!-- <button id="installApp">Download BNB CoinTracker app</button> -->
+            <div class="dlw-parent-con">
+                
+                <div class="header-nav" id="download-header-nav">
+                    <div class="container">
+                        <div class="header-main-nav">
+                                <!-- First container -->
+                                <div class="header-con first-section" onclick="document.location.href='../index.html'">
+                                    <div class="nav-logo-img">
+                                        <img src="../svg/binance.svg" alt="logo" class="img-fluid">
+                                    </div>
+                                    <span class="nav-wen-name">BNB CoinTracker</span>
+                                </div>
+                                
+                                <!-- Second container -->
+                                <div class="header-con second-section">
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='../index.html'">Home</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='market.html'">Markets</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='app.html'">App Features</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='./community.html'">Community</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='js/sup.html'">Support</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='policy.html'">Privacy Policy</div>
+                                </div>
+            
+                                <!-- Third container -->
+                                <div class="header-con third-section">
+                                    <div class="nav-menu mobile-menu" onclick="homeOpen()"><img src="../svg/menu.svg" alt="menu" class="img-fluid"></div>
+                                    <div class="nav-btn menu-last" onclick="document.location.href='index.html'">Use App Online</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="background-color-page">
+                    <div class="container-fluid hero-header">
+                        <div class="container" style="padding-top: 7.5em;">
+                            <div class="row align-items-center my-5 pb-5" id="dlw-row">
+                                <!-- Image container -->
+                                <div class="col-sm-12 col-md-12 col-lg-6 p-4 mx-auto">
+                                    <div class="dlw-main-wrap">
+                                        <div class="dlw-lg-txt">DOWNLOAD</div>
+                                        <div class="dlw-md-txt">OUR APP </div>
+                                        <div class="dlw-sm-txt">Trade Bitcoin and other cryptocurrencies quickly and securely. Download the app by clicking the install button below.</div>
+                                        
+                                        <div class="dlw-smd-txt" style="padding-top: 2em;">Please do try to make sure you have the latest version of your browser. Thank You.</div>
+                                        <div style="display:flex; flex-direction: row;">
+                                            <div class="dlw-install-btn" id="dlw-install-btn" style="margin-right: 10px;">INSTALL FOR ALL PLATFORMS</div>
+                                            <div class="dlw-install-btn" onclick="document.location.href='index.html'">USE APP ONLINE</div>
+                                        </div>
+                                        <div class="dlw-install-btn" id="Information" style="margin-top: 15px;margin-right: 10px;">APP ALREADY INSTALLED</div>
+                                    </div>
+                                </div>
+
+                                <!-- Text container -->
+                                <div class="col-sm-11 col-md-9 col-lg-6 p-4 mx-auto">
+                                    <div class="dlw-main-wrap dlw-img">
+                                        <div class="dlw-top-abs-wrap">
+                                            <div class="dlw-top-abs"></div>
+                                        </div>
+                                        <img src="../img/deviceframe.png" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="container-xxl py-2 mb-5">
+                    <div class="container px-lg-5">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-lg-6">
+                                <div class="section-title position-relative mb-4 pb-2">
+                                    <h6 class="position-relative ps-1"><i class="fa fa-bolt tick me-2"></i>About Us</h6>
+                                    <h2 class="mt-2 head-lg-txt">Downloadable on All Platforms</h2>
+                                    <div class="head-line-con">
+                                        <div class="lg-head-line"></div>
+                                        <div class="sm-head-line"></div>
+                                    </div>
+                                </div>
+                                <p class="mb-4 head-thick">
+                                    Our Vision, Mission and Core Values has been recognised by all platforms. All you have to do before downloading is make sure your chrome is updated to the most current secure version.
+                                </p>
+                                <div class="d-flex align-items-center mt-4">
+                                    <div class="web-btn px-4 me-3" onclick="document.location.href='js/sup.html'">Want to Chat with Support?</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="hexagon-section">
+                                    <main class="hexagon-container">
+                                        <div class="hexagon">
+                                            <img src="../svg/window.svg" class="hexagon-img">
+                                        </div>
+                                        <div class="hexagon">
+                                            <img src="../svg/android.svg" class="hexagon-img">
+                                        </div>
+                                        <div class="hexagon">
+                                            <img src="../img/linux.png" class="hexagon-img">
+                                        </div>
+                                        <div class="hexagon">
+                                            <img src="../img/apple-logo.png" class="hexagon-img">
+                                        </div>
+                                        
+                                        <div class="hexagon">
+                                            <img src="../svg/ubuntu.svg" class="hexagon-img">
+                                        </div>
+                                        <div class="hexagon">
+                                            <img src="../svg/centos.svg" class="hexagon-img">
+                                        </div>
+                                    </main>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- About End -->
+                
+
+                <!-- Footer Start -->
+                <div class="support-section-color p-3" style="margin-top: 2em;">
+                    <div class="container-fluid text-light footer wow fadeIn" data-wow-delay="0.1s">
+                        <div class="container pb-5 px-lg-5">
+                            <div class="row g-5 pt-4">
+                                <div class="col-md-6 col-lg-6 p-2">
+                                    <h5 class="text-white mb-4">Get In Touch</h5>
+                                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, </p>
+                                    <p><i class="fa fa-envelope me-3"></i>BNBCoinTracker@gmail.com</p>
+                                </div>
+                                <div class="col-md-6 col-lg-6 p-2">
+                                    <h5 class="text-white mb-4">Newsletter</h5>
+                                    <p>Reach out to support personnel for guidance on the next steps.</p>
+                                    <div class="position-relative w-100 mt-3">
+                                        <div class="web-btn px-4 me-3" onclick="document.location.href='js/sup.html'" style="color: black;">Go to Support page</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container px-lg-5">
+                            <div class="copyright">
+                                <div class="row">
+                                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                                        &copy; <a class="border-bottom" href="#">BNB CoinTracker</a> · <span id="footer-section"></span>, All Right Reserved. 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer End -->
+      
+            </div>
+        </div>
+    </body>
+    <script src="js/bootstrap.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('dlw-install-btn').style.display = 'block';
+                document.getElementById('Information').style.display = 'none';
+        });
+
+        document.getElementById('dlw-install-btn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response to install prompt: ${outcome}`);
+                deferredPrompt = null;
+                document.getElementById('dlw-install-btn').style.display = 'none';
+                document.getElementById('Information').style.display = 'block';
+            }
+        });
+
+        
+        //  Display date in assets page
+        function showDate() {
+            let date = new Date();
+            let y = date.getFullYear();
+            let assetsDate = document.querySelector("#footer-section");
+            assetsDate.innerHTML = `${y}`;
+        };
+        showDate();
+        // -------------------- 
+    </script>
+</html>

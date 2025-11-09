@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Favicon -->
+        <link href="../svg/binance.svg" rel="icon">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!--Start of Chat Script-->
+            <script type="text/javascript">
+                var _smartsupp = _smartsupp || {};
+                _smartsupp.key = 'a3cf74e0de0a40155d46c2f1983191594bb2a699';
+                window.smartsupp||(function(d) {
+                    var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+                    s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+                    c.type='text/javascript';c.charset='utf-8';c.async=true;
+                    c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+                })(document);
+            </script>
+        <!--End of Chat Script-->
+        
+        <!-- External stylesheet -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+        <title>BNB CoinTracker</title>
+    </head>
+    <body>
+        <div class="parent-container">
+            <!-- Fixed Menu Container -->
+            <div class="fixed-nav-menu" id="home-menu">
+                <div class="fixed-nav-absolute" onclick="homeClose()"></div>
+                <div class="fixed-nav-con">
+                    <div class="menu-con">
+                        <!-- Header con --><!-- Navbar container -->
+                        <div class="menu-nav-wrap">
+                            <div class="container">
+                                <div class="menu-nav-con">
+                                    <!-- Web image-->
+                                    <div class="menu-nav-web-img"><img src="../svg/binance.svg" alt="logo" class="img-fluid"></div>
+                                    <!-- Exit menu icon-->
+                                    <div class="menu-nav-exit-img" onclick="homeClose()"><img src="../svg/exit.svg" alt="logo" class="img-fluid"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu link container -->
+                        <div class="menu-link-wrap">
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='../index.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/home.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Home</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con menu-active">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/market.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Markets</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con"  onclick="document.location.href='app.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/appfeat.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">App Features</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='./community.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/communitymenu.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Binance Community</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='js/sup.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/support.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Support</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='policy.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/policy.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Privacy Policy</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div style="width: 100%;height: auto;">
+                        <div class="menu-link-line"></div>
+                        <div class="header-con third-section mx-auto mt-5">
+                            <div class="nav-btn" onclick="document.location.href='downloadapp.html'">Download App</div>
+                            <div class="nav-btn" onclick="document.location.href='index.html'">Sign In</div>
+                        </div>
+                    </div>
+                    <div class="menu-con"></div>
+                </div>
+            </div>
+            
+
+            <!-- -------------------- -------------------- -------------------- -->
+            <!-- <button id="installApp">Download BNB CoinTracker app</button> -->
+            <div class="dlw-parent-con">
+                
+                <div class="header-nav" id="download-header-nav">
+                    <div class="container">
+                        <div class="header-main-nav">
+                                <!-- First container -->
+                                <div class="header-con first-section" onclick="document.location.href='../index.html'">
+                                    <div class="nav-logo-img">
+                                        <img src="../svg/binance.svg" alt="logo" class="img-fluid">
+                                    </div>
+                                    <span class="nav-wen-name">BNB CoinTracker</span>
+                                </div>
+                                
+                                <!-- Second container -->
+                                <div class="header-con second-section">
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='../index.html'">Home</div>
+                                    <div class="lg-nav-link nav-active">Markets</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='app.html'">App Features</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='./community.html'">Community</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='js/sup.html'">Support</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='policy.html'">Privacy Policy</div>
+                                </div>
+            
+                                <!-- Third container -->
+                                <div class="header-con third-section">
+                                    <div class="nav-menu mobile-menu" onclick="homeOpen()"><img src="../svg/menu.svg" alt="menu" class="img-fluid"></div>
+                                    <div class="nav-btn menu-mobile" onclick="document.location.href='downloadapp.html'">Download App</div>
+                                    <div class="nav-btn menu-last" onclick="document.location.href='index.html'">Sign In</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container-fluid">
+                    <div class="container" style="padding-top: 2.5em;">
+                        <div class="row align-items-center pb-2" id="dlw-row">
+                            <!-- Image container -->
+                            <div class="col-12 mb-4">
+                                <div class="section-title position-relative mt-5 mb-4 pb-2">
+                                    <h2 class="mt-2 head-lg-txt">BNB CoinTracker Liquidity Pool</h2>
+                                    <div class="head-line-con">
+                                        <div class="lg-head-line"></div>
+                                        <div class="sm-head-line"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <!-- Market container container -->
+                                    <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                        <div class="market-gradient p-4">
+                                            <div class="market-img"><img src="svg/token/01.svg" class="img-fluid"></div>
+                                            <h4 class="mb-3 head-lg-txt mt-5">Bitcoin (BTC)</h5>
+                                            <p class="head-thick">Bitcoin is the first & most popular cryptocurrency in the market. First introduced in 2009 by Satoshi Nakamoto, Bitcoin has held the crypto market’s number one spot according to market capitalization.</p>
+                                            <div class="web-btn px-4 mt-auto" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Market container container -->
+                                    <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                        <div class="market-gradient p-4">
+                                            <div class="market-img"><img src="svg/token/02.svg" class="img-fluid"></div>
+                                            <h4 class="mb-3 head-lg-txt mt-5">Ethereum (ETH)</h5>
+                                            <p class="head-thick">Ethereum (ETH) is the second-largest cryptocurrency token in the market. It has brought much innovation to the industry by introducing smart contract functionality, paving the way for decentralized finance (DeFi) and decentralized apps (DApps).</p>
+                                            <div class="web-btn px-4 mt-auto" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Market container container -->
+                                    <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                        <div class="market-gradient p-4">
+                                            <div class="market-img"><img src="svg/token/03.svg" class="img-fluid"></div>
+                                            <h4 class="mb-3 head-lg-txt mt-5">Litecoin (LTC)</h5>
+                                            <p class="head-thick">Litecoin is a peer-to-peer payment cryptocurrency forked from Bitcoin in 2011. While it shares similarities with Bitcoin, it's designed to deliver a more efficient means of sending and receiving P2P payments and is accepted by merchants globally.</p>
+                                            <div class="web-btn px-4 mt-auto" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Market container container -->
+                                    <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                        <div class="market-gradient p-4">
+                                            <div class="market-img"><img src="svg/token/04.svg" class="img-fluid"></div>
+                                            <h4 class="mb-3 head-lg-txt mt-5">Dogecoin (DOGE)</h5>
+                                            <p class="head-thick">Dogecoin is a novelty cryptocurrency originally launched as a “memecoin” within the cryptocurrency community. Over time, however, Dogecoin has grown into a large blockchain network and is one of the most popular altcoins available in the market.</p>
+                                            <div class="web-btn px-4" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Market container container -->
+                                    <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                        <div class="market-gradient p-4">
+                                            <div class="market-img"><img src="svg/token/05.svg" class="img-fluid"></div>
+                                            <h4 class="mb-3 head-lg-txt mt-5">Tether (USDT)</h5>
+                                            <p class="head-thick">Tether is a stablecoin pegged to the US dollar and was the first stablecoin to exist. USDT was initially launched as Realcoin in 2014 by entrepreneurs Reeve Collins, Brock Pierce, and developer Craig Sellers. It's now become the largest stablecoin.</p>
+                                            <div class="web-btn px-4" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Market container container -->
+                                    <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                        <div class="market-gradient p-4">
+                                            <div class="market-img"><img src="svg/token/06.svg" class="img-fluid"></div>
+                                            <h4 class="mb-3 head-lg-txt mt-5">Tron (TRX)</h5>
+                                            <p class="head-thick">TRON is one of the most widely used public blockchains online, with 100 million users and a total of over 3.4 billion transactions. The TRON network aims to decentralize content-sharing and establish a framework for Web3 platforms to operate.</p>
+                                            <div class="web-btn px-4" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Newsletter Start -->
+                <div class="support-section-color">
+                    <div class="container-xxl newsletter">
+                        <div class="container px-lg-5">
+                            <div class="row align-items-center" style="height: 275px;">
+                                <div class="col-12 col-md-6">
+                                    <h3 class="text-white head-lg-txt">Ready to get started?</h3>
+                                    <small class="text-white head-thick">Register and verify now to get 6x of your first deposit immediately you deposit using any crypto address.</small>
+                                    <div class="d-flex align-items-center position-relative w-100 mt-3">
+                                        <div class="web-btn px-4 me-3" onclick="document.location.href='../module/js/sup.html'">Go to download page</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-center mb-n5 d-none d-md-block">
+                                    <img class="img-fluid" style="height: 250px;margin-top:55px;" src="../img/newsletter.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newsletter End -->
+
+
+                <div class="container-fluid mt-3">
+                    <div class="container">
+                        <div class="row align-items-center my-5 pb-2" id="dlw-row">
+                            <!-- Market container container -->
+                            <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                <div class="market-gradient p-4">
+                                    <div class="market-img"><img src="svg/token/08.svg" class="img-fluid"></div>
+                                    <h4 class="mb-3 head-lg-txt mt-5">USDCoin (USDC)</h5>
+                                    <p class="head-thick">USD Coin is a stablecoin pegged to the US dollar at a 1:1 ratio and is designed to remain stable regardless of cryptocurrency market conditions. As a fully backed stablecoin, it holds US dollar asset reserves in regulated US financial institutions</p>
+                                    <div class="web-btn px-4" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Market container container -->
+                            <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                <div class="market-gradient p-4">
+                                    <div class="market-img"><img src="svg/token/09.svg" class="img-fluid"></div>
+                                    <h4 class="mb-3 head-lg-txt mt-5">BNB Coin (BNB)</h5>
+                                    <p class="head-thick">BNB is a cryptocurrency that can be used to trade and pay fees on the BNB cryptocurrency exchange. BNB is the crypto power-house to the BNB Chain ecosystem. As one of the world's most popular utility tokens, BNB is applicable in all use cases.</p>
+                                    <div class="web-btn px-4" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Market container container -->
+                            <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                <div class="market-gradient p-4">
+                                    <div class="market-img"><img src="svg/token/10.svg" class="img-fluid"></div>
+                                    <h4 class="mb-3 head-lg-txt mt-5">Binance USD (BUSD)</h5>
+                                    <p class="head-thick">Binance USD is a stablecoin, so its value is pegged to a fiat currency — in this case, the US dollar. BUSD was launched in September 2019 as part of a joint partnership between BNB, Blockchain and Paxos, headquartered in New York.</p>
+                                    <div class="web-btn px-4" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Market container container -->
+                            <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                <div class="market-gradient p-4">
+                                    <div class="market-img"><img src="svg/token/11.svg" class="img-fluid"></div>
+                                    <h4 class="mb-3 head-lg-txt mt-5">Avalanche (AVAX)</h5>
+                                    <p class="head-thick">Avalanche provides users with the ability to create unlimited, interoperable blockchains, and uses three blockchains to ensure that the network is capable of scaling to meet the transaction speeds and throughput demands of mainstream adoption.</p>
+                                    <div class="web-btn px-4" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Market container container -->
+                            <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                                <div class="market-gradient p-4">
+                                    <div class="market-img"><img src="svg/token/13.svg" class="img-fluid"></div>
+                                    <h4 class="mb-3 head-lg-txt mt-5">Solana (SOL)</h5>
+                                    <p class="head-thick">Solana is an independent Layer 1 blockchain created as a fast efficient network with an underlying smart contract protocol. Since its launch in 2020, the Solana network has been dubbed a competitor to Ethereum, and even nicknamed ‘The Ethereum Killer’.</p>
+                                    <div class="web-btn px-4" onclick="document.location.href='downloadapp.html'">Join Liquidity</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- Footer Start -->
+                <div class="support-section-color p-3" style="margin-top: 2em;">
+                    <div class="container-fluid text-light footer wow fadeIn" data-wow-delay="0.1s">
+                        <div class="container pb-5 px-lg-5">
+                            <div class="row g-5 pt-4">
+                                <div class="col-md-6 col-lg-6 p-2">
+                                    <h5 class="text-white mb-4">Get In Touch</h5>
+                                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                                    <p><i class="fa fa-envelope me-3"></i>BNBCoinTracker@gmail.com</p>
+                                </div>
+                                <div class="col-md-6 col-lg-6 p-2">
+                                    <h5 class="text-white mb-4">Newsletter</h5>
+                                    <p>Reach out to support personnel for guidance on the next steps.</p>
+                                    <div class="position-relative w-100 mt-3">
+                                        <div class="web-btn px-4 me-3" onclick="document.location.href='js/sup.html'" style="color: black;">Go to Support page</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container px-lg-5">
+                            <div class="copyright">
+                                <div class="row">
+                                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                                        &copy; <a class="border-bottom" href="#">BNB CoinTracker</a> · <span id="footer-section"></span>, All Right Reserved. 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer End -->
+      
+            </div>
+        </div>
+    </body>
+    <script src="js/bootstrap.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+        //  Display date in assets page
+        function showDate() {
+            let date = new Date();
+            let y = date.getFullYear();
+            let assetsDate = document.querySelector("#footer-section");
+            assetsDate.innerHTML = `${y}`;
+        };
+        showDate();
+        // -------------------- 
+    </script>
+</html>
