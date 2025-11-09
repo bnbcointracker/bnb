@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BNB CoinTracker</title>
+
+        <!-- Favicon -->
+        <link href="svg/binance.svg" rel="icon">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!--Start of Chat Script-->
+            <script type="text/javascript">
+                var _smartsupp = _smartsupp || {};
+                _smartsupp.key = 'a3cf74e0de0a40155d46c2f1983191594bb2a699';
+                window.smartsupp||(function(d) {
+                    var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+                    s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+                    c.type='text/javascript';c.charset='utf-8';c.async=true;
+                    c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+                })(document);
+            </script>
+        <!--End of Chat Script-->
+    
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/responsive.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="parent-container">
+            <!-- Fixed Menu Container -->
+            <div class="fixed-nav-menu" id="home-menu">
+                <div class="fixed-nav-absolute" onclick="homeClose()"></div>
+                <div class="fixed-nav-con">
+                    <div class="menu-con">
+                        <!-- Header con --><!-- Navbar container -->
+                        <div class="menu-nav-wrap">
+                            <div class="container">
+                                <div class="menu-nav-con">
+                                    <!-- Web image-->
+                                    <div class="menu-nav-web-img"><img src="svg/binance.svg" alt="logo" class="img-fluid"></div>
+                                    <!-- Exit menu icon-->
+                                    <div class="menu-nav-exit-img" onclick="homeClose()"><img src="svg/exit.svg" alt="logo" class="img-fluid"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu link container -->
+                        <div class="menu-link-wrap">
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con menu-active">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="svg/home.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Home</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='module/market.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="svg/market.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Markets</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con"  onclick="document.location.href='module/app.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="svg/appfeat.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">App Features</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='module/community.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="../svg/communitymenu.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Binance Community</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='module/js/sup.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="svg/support.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Support</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Menu link-->
+                            <div class="menu-link-con" onclick="document.location.href='module/policy.html'">
+                                <div class="container">
+                                    <div class="menu-link">
+                                        <div class="menu-link-img"><img src="svg/policy.svg" alt="logo" class="img-fluid"></div>
+                                        <span class="menu-link-txt">Privacy Policy</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div style="width: 100%;height: auto;">
+                        <div class="menu-link-line"></div>
+                        <div class="header-con third-section mx-auto mt-5">
+                            <div class="nav-btn" onclick="document.location.href='module/downloadapp.html'">Download App</div>
+                            <div class="nav-btn" onclick="document.location.href='module/index.html'">Sign In</div>
+                        </div>
+                    </div>
+                    <div class="menu-con"></div>
+                </div>
+            </div>
+
+
+
+
+        
+            <!-- MAin Body container -->
+            <div class="body-container">
+                <div class="header-nav">
+                    <div class="container">
+                       <div class="header-main-nav">
+                             <!-- First container -->
+                            <div class="header-con first-section">
+                                <div class="nav-logo-img">
+                                    <img src="svg/binance.svg" alt="logo" class="img-fluid">
+                                </div>
+                                <span class="nav-wen-name">BNB CoinTracker</span>
+                            </div>
+                            
+                            <!-- Second container -->
+                            <div class="header-con second-section">
+                                <div class="lg-nav-link nav-active">Home</div>
+                                <div class="lg-nav-link nav-unactive" onclick="document.location.href='module/market.html'">Markets</div>
+                                <div class="lg-nav-link nav-unactive" onclick="document.location.href='module/app.html'">App Features</div>
+                                    <div class="lg-nav-link nav-unactive" onclick="document.location.href='module/community.html'">Community</div>
+                                <div class="lg-nav-link nav-unactive" onclick="document.location.href='module/js/sup.html'">Support</div>
+                                <div class="lg-nav-link nav-unactive" onclick="document.location.href='module/policy.html'">Privacy Policy</div>
+                            </div>
+        
+                            <!-- Third container -->
+                            <div class="header-con third-section">
+                                <div class="nav-menu mobile-menu" onclick="homeOpen()"><img src="svg/menu.svg" alt="menu" class="img-fluid"></div>
+                                <div class="nav-btn menu-mobile" onclick="document.location.href='module/downloadapp.html'">Download App</div>
+                                <div class="nav-btn menu-last" onclick="document.location.href='module/index.html'">Sign In</div>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Header container -->
+                <div class="header-main-container">
+                    <div class="background-absolute">
+                        <img src="img/moonbot.png" class="bot-header-img">
+                    </div>
+                    <div class="container-xxl pt-5 hero-header mb-5">
+                        <div class="container pt-5 my-5 px-lg-5">
+                            <div class="row g-5 py-5 justify-content-between">
+                                <div class="col-lg-5 p-2 text-center text-lg-start">
+                                    <h1 class="mb-4 header-txt">THE FUTURE OF FAST, SECURE, AND COST-EFFECTIVE CRYPTO TRANSACTIONS AT IT'S CORE.</h1>
+                                    <div class="header-botom-txt">
+                                        <img src="svg/gift.svg" alt="logo" class="gift-img">
+                                        <span class="gift-txt">Get 6x your deposit on your first deposit now!</span>
+                                    </div>
+                                    <div class="header-container">
+                                        <div class="header-btn" onclick="document.location.href='module/downloadapp.html'">Download App</div>
+                                        <div class="header-btn" onclick="document.location.href='module/index.html'">Sign In</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 p-2 text-center text-lg-start">
+                                    <img class="img-fluid" src="img/deviceframe.png" alt="">
+                                </div>
+
+                                <div class="col-12 col-md-11 col-lg-10 mx-auto">
+                                    <div class="slider">
+                                        <div class="slides" id="home-slider-con">
+                                            <div class="slide"><img src="img/carousel1.jpg" class="img-fluid"></div>
+                                            <div class="slide"><img src="img/carousel2.jpg" class="img-fluid"></div>
+                                            <div class="slide"><img src="img/carousel3.jpg" class="img-fluid"></div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="container-xxl py-2">
+                    <div class="container px-lg-5">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-12 col-md-12 col-lg-7 mx-auto">
+                                <div class="section-title position-relative mb-4 pb-2">
+                                    <h6 class="position-relative ps-1"><i class="fa fa-bolt tick me-2"></i>About Us</h6>
+                                    <h2 class="mt-2 head-lg-txt">Our Vision, Mission and Values</h2>
+                                    <div class="head-line-con">
+                                        <div class="lg-head-line"></div>
+                                        <div class="sm-head-line"></div>
+                                    </div>
+                                </div>
+                                <p class="mb-4 head-thick">
+                                    Our new vision is to empower global financial freedom. We are committed to delivering the lowest transaction fees, quickest 
+                                    transaction times, and most secure Bitcoin infrastructure. Furthermore, we will permanently provide a 98% discount on all cryptocurrency 
+                                    transactions, provide 0.001 milliseconds as our highest transaction rate record, and allow users to manage their assets with security 
+                                    for their digital assets intact.
+                                    <br><br>
+                                    BNB CoinTracker's Core Values serve as the foundation of our behavior, decisions, and action, unifying our varied international teams to collaborate more effectively.
+                                 </p>    
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <h6 class="mb-3 head-thick"><i class="fa fa-check tick me-2"></i>x6 first deposit</h6>
+                                        <h6 class="mb-0 head-thick"><i class="fa fa-check tick me-2"></i>-98% off transfer fee</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h6 class="mb-3 head-thick"><i class="fa fa-check tick me-2"></i>0.001 mili-seconds fast</h6>
+                                        <h6 class="mb-0 head-thick"><i class="fa fa-check tick me-2"></i>24/7 Support</h6>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mt-4">
+                                    <div class="web-btn px-4 me-3" onclick="document.location.href='module/js/sup.html'">Contact Support</div>
+                                </div>
+                            </div>
+                            <div class="col-10 col-md-7 col-lg-5 mx-auto">
+                                <img class="img-fluid" src="img/about.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- About End -->
+
+
+                <!-- Newsletter Start -->
+                <div class="support-section-color">
+                    <div class="container-xxl newsletter my-5">
+                        <div class="container px-lg-5">
+                            <div class="row align-items-center" style="height: 275px;">
+                                <div class="col-12 col-md-6">
+                                    <h3 class="text-white head-lg-txt">Ready to get started?</h3>
+                                    <small class="text-white head-thick">Register and verify now to get 6x of your first deposit immediately you deposit using any crypto address.</small>
+                                    <div class="d-flex align-items-center position-relative w-100 mt-3">
+                                        <div class="web-btn px-4 me-3" onclick="document.location.href='module/downloadapp.html'">Go to download page</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-center mb-n5 d-none d-md-block">
+                                    <img class="img-fluid" style="height: 250px;margin-top:55px;" src="img/newsletter.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newsletter End -->
+
+
+                <!-- Service Start -->
+                <div class="container-xxl py-5">
+                    <div class="container px-lg-5">
+                        <div class="section-title position-relative text-center mb-2 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="section-title position-relative pb-2">
+                                <h6 class="position-relative head-thick ps-1"><i class="fa fa-bolt tick me-2"></i>Our Services</h6>
+                                <h2 class="mt-2 head-lg-txt">Our Capabilities</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-lg-4 p-2">
+                                <div class="service-con p-4">
+                                    <div class="service-direction column-reverse">
+                                        <div class="col-12 col-md-4 col-lg-12 p-2 column-image-space">
+                                            <img src="img/global-pc.png" class="img-fluid">
+                                        </div>
+                                        <div class="col-12 col-md-7 col-lg-12 p-2">
+                                            <h4 class="mb-3 head-lg-txt mt-5">x6 your first deposit</h4>
+                                            <p class="head-thick">The board of directors has opted to provide all users a bonus equal to six times their first deposit; for instance, a deposit of $1,000 would result in a credit of $6,000 for any crypto token.</p>
+                                            <div class="web-btn" onclick="document.location.href='module/downloadapp.html'">Download App</div>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+
+                            <div class="col-12 col-md-12 col-lg-4 p-2">
+                                <div class="service-con p-4">
+                                    <div class="service-direction">
+                                        <div class="col-12 col-md-7 col-lg-12 p-2">
+                                            <h4 class="mb-3 head-lg-txt mt-5">Lowest transaction cost</h4>
+                                            <p class="head-thick">Due to the disinvolvement of government, exchanging between fiat and crypto is expensive. Now, we have stepped on this problem with a 72% discount on local transfers.</p>
+                                            <div class="web-btn" onclick="document.location.href='module/app.html'">App Features</div>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-lg-12 p-2 column-image-space">
+                                            <img src="img/grow.png" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                            
+                            <div class="col-12 col-md-12 col-lg-4 p-2">
+                                <div class="service-con p-4">
+                                    <div class="service-direction column-reverse">
+                                        <div class="col-12 col-md-4 col-lg-12 p-2 column-image-space">
+                                            <img src="img/thrive-2.png" class="img-fluid">
+                                        </div>
+                                        <div class="col-12 col-md-7 col-lg-12 p-2">
+                                            <h4 class="mb-3 head-lg-txt mt-5">Fastest transaction rate</h4>
+                                            <p class="head-thick">Our Team has achieved an impressive transaction time of 0.001 milliseconds for all transactions on BNB CoinTracker, demonstrating the unparalleled quality of our service.</p>
+                                            <div class="web-btn" onclick="document.location.href='module/market.html'">Check Markets</div>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+
+                            <div class="col-12 col-md-12 col-lg-4 p-2">
+                                <div class="service-con p-4">
+                                    <div class="service-direction">
+                                        <div class="col-12 col-md-7 col-lg-12 p-2 column-image-space">
+                                            <h4 class="mb-3 head-lg-txt mt-5">24/7 support</h4>
+                                            <p class="head-thick">For the first time, it is simple and anonymous to exchange fiat and cryptocurrency assets. Our crew is ready to help, and our systems' security is unrivaled and unbreakable.</p>
+                                            <div class="web-btn" onclick="document.location.href='module/js/sup.html'">Chat with Support</div>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-lg-12 p-2 column-image-space">
+                                            <img src="img/heropc.png" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+
+                            <div class="col-12 col-md-12 col-lg-4 p-2">
+                                <div class="service-con p-4">
+                                    <div class="service-direction column-reverse">
+                                        <div class="col-12 col-md-4 col-lg-12 p-2 column-image-space">
+                                            <img src="img/press-header-bg.png" class="img-fluid">
+                                        </div>
+                                        <div class="col-12 col-md-7 col-lg-12 p-2">
+                                            <h4 class="mb-3 head-lg-txt mt-5">x2 as referral bonus</h4>
+                                            <p class="head-thick">If Users invites anyone using the link within their app, they will receive double the amount of whatever the invitee deposits, while the invitee still receives their 6x bonus.</p>
+                                            <div class="web-btn" onclick="document.location.href='module/downloadapp.html'">Go to app</div>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+
+                            <div class="col-12 col-md-12 col-lg-4 p-2">
+                                <div class="service-con p-4">
+                                    <div class="service-direction">
+                                        <div class="col-12 col-md-7 col-lg-12 p-2">
+                                            <h4 class="mb-3 head-lg-txt mt-5">How long will x6 Promo last?</h4>
+                                            <p class="head-thick">With its anonymous worldwide reach, BNB CoinTracker is ushering in a new era of cryptocurrency accessibility. Take the chance to investigate this oppurtunity for yourself.</p>
+                                            <div class="web-btn" onclick="document.location.href='module/index.html'">Sign In</div>
+                                        </div>
+                                        <div class="col-12 col-md-5 col-lg-12 p-2 column-image-space">
+                                            <img src="img/innovation.png" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Service End -->
+                
+                
+                
+                <div class="container-xxl py-2 mb-5">
+                    <div class="container px-lg-5">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-lg-6">
+                                <div class="section-title position-relative mb-4 pb-2">
+                                    <h6 class="position-relative ps-1"><i class="fa fa-bolt tick me-2"></i>About Us</h6>
+                                    <h2 class="mt-2 head-lg-txt">Downloadable on All Platforms</h2>
+                                    <div class="head-line-con">
+                                        <div class="lg-head-line"></div>
+                                        <div class="sm-head-line"></div>
+                                    </div>
+                                </div>
+                                <p class="mb-4 head-thick">
+                                    Our Vision, Mission and Core Values has been recognised by all platforms. All you have to do before downloading is make sure your chrome is updated to the most current secure version.
+                                </p>
+                                <div class="d-flex align-items-center mt-4">
+                                    <div class="web-btn px-4 me-3" onclick="document.location.href='module/downloadapp.html'">Go to Download page</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="hexagon-section">
+                                    <main class="hexagon-container">
+                                        <div class="hexagon">
+                                            <img src="svg/window.svg" alt="logo" class="hexagon-img">
+                                        </div>
+                                        <div class="hexagon">
+                                            <img src="svg/android.svg" alt="logo" class="hexagon-img">
+                                        </div>
+                                        <div class="hexagon">
+                                            <img src="img/linux.png" class="hexagon-img">
+                                        </div>
+                                        <div class="hexagon">
+                                            <img src="img/apple-logo.png" class="hexagon-img">
+                                        </div>
+                                        
+                                        <div class="hexagon">
+                                            <img src="svg/ubuntu.svg" alt="logo" class="hexagon-img">
+                                        </div>
+                                        <div class="hexagon">
+                                            <img src="svg/centos.svg" alt="logo" class="hexagon-img">
+                                        </div>
+                                    </main>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- About End -->
+       
+      
+                <!-- Testimonial Start -->
+                <div class="yellow-testimonial">
+                    <div class="container-xxl testimonial py-4 mt-2">
+                        <div class="container py-5 px-lg-5">
+                            
+                            <div class="section-title position-relative mb-2 pb-2">
+                                <h2 class="mt-2 head-lg-txt cont-dark-font">Need Help?</h2>
+                                <div class="head-line-con">
+                                    <div class="lg-head-line" style="background: #0C0E12"></div>
+                                    <div class="sm-head-line"></div>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-12 col-md-8 col-lg-4 p-2 mx-auto">
+                                    <h4 class="mb-3 head-lg-txt cont-dark-font">Get 6x on first deposit.</h4>
+                                    <p class="head-thick cont-dark-font">Enjoy from our large liquidity pool as you gain 6x of your first deposit using any cryptocurrency.</p>
+                                    <div class="test-btn px-4" onclick="document.location.href='module/index.html'">Lunch App</div>
+                                </div>
+                                <div class="col-12 col-md-8 col-lg-4 p-2 align-items-center justify-content-center">
+                                    <div class="mx-auto" style="width: fit-content;"><img src="img/testimonial.svg" class="img-fluid"></div>
+                                </div>
+                                <div class="col-12 col-md-8 col-lg-4 p-2 mx-auto">
+                                    <h4 class="mb-3 head-lg-txt cont-dark-font">24/7 Chat Support</h4>
+                                    <p class="head-thick cont-dark-font">Get 24/7 chat support with our friendly customer service agents at your service.</p>
+                                    <div class="test-btn px-4" onclick="document.location.href='module/js/sup.html'">Chat now</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial End -->
+                
+
+                <!-- Footer Start -->
+                <div class="support-section-color p-3">
+                    <div class="container-fluid text-light footer wow fadeIn" data-wow-delay="0.1s">
+                        <div class="container pb-5 px-lg-5">
+                            <div class="row g-5 pt-4">
+                                <div class="col-md-6 col-lg-6 p-2">
+                                    <h5 class="text-white mb-4">Get In Touch</h4>
+                                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                                    <p><i class="fa fa-envelope me-3"></i>BNBCoinTracker@gmail.com</p>
+                                </div>
+                                <div class="col-md-6 col-lg-6 p-2">
+                                    <h5 class="text-white mb-4">Newsletter</h4>
+                                    <p>Reach out to support personnel for guidance on the next steps.</p>
+                                    <div class="position-relative w-100 mt-3">
+                                        <div class="web-btn px-4 me-3" onclick="document.location.href='module/js/sup.html'" style="color: black;">Go to Support page</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container px-lg-5">
+                            <div class="copyright">
+                                <div class="row">
+                                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                                        &copy; <a class="border-bottom" href="#">BNB CoinTracker</a> · <span id="footer-section"></span>, All Right Reserved. 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer End -->
+      
+            </div>
+        </div>
+
+
+    </body>
+    <!-- Template Javascript -->
+    <script src="js/jquery.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        //  Display date in assets page
+        function showDate() {
+            let date = new Date();
+            let y = date.getFullYear();
+            let assetsDate = document.querySelector("#footer-section");
+            assetsDate.innerHTML = `${y}`;
+        };
+        showDate();
+        // -------------------- 
+    </script>
+</html>
