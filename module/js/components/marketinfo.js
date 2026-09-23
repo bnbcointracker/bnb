@@ -270,6 +270,7 @@ class MarketInfo extends HTMLElement {
 
 customElements.define("market-info-page", MarketInfo);
 
+
 // -------------------- HELPER FUNCTIONS --------------------
 function checkStatus(response) {
     if (response.ok) {
@@ -279,782 +280,94 @@ function checkStatus(response) {
     }
 }
 
-// -------------------- Bitcoin - PAGE --------------------
-const btcData = async () => {
-    const response = await fetch(CryptoLocalData[0].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
 
-let createBtcChart;
-async function printBtcChart() {
-    let { times, prices } = await btcData();
-    let btcChart = document.getElementById('btcChart').getContext('2d');
-    let gradient = btcChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[0].color}.45)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[0].color}.025)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createBtcChart = new Chart(btcChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[0].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
+// -------------------- UNIFIED CHART RENDERING --------------------
+
+// 1. One reusable function replaces your 13 identical drawing functions
+async function fetchAndDrawChart(chartId, index, tooltipBg) {
+    try {
+        const response = await fetch(CryptoLocalData[index].graph);
+        const json = await response.json();
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+        const prices = data.map(item => item[1]);
+
+        let ctx = document.getElementById(chartId).getContext('2d');
+        let gradient = ctx.createLinearGradient(0, 0, 0, 500);
+
+        // Replicates your exact original gradient opacities based on the token index
+        let topOpacity = [0, 1, 4, 6, 8].includes(index) ? '.45' : '.55';
+        let bottomOpacity = [0, 1, 4, 6, 8].includes(index) ? '.025' : '.1';
+
+        gradient.addColorStop(0, `rgba(${CryptoLocalData[index].color}${topOpacity})`);
+        gradient.addColorStop(.425, `rgba(${CryptoLocalData[index].color}${bottomOpacity})`);
+        
+        Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
+        Chart.defaults.global.defaultFontSize = 12;
+
+        return new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: times,
+                datasets: [{
+                    label: '$',
+                    data: prices,
+                    backgroundColor: gradient,
+                    borderColor: `rgba(${CryptoLocalData[index].color} 1)`,
+                    borderJoinStyle: 'round',
+                    borderCapStyle: 'round',
+                    borderWidth: 3,
+                    pointRadius: 0,
+                    pointHitRadius: 10,
+                    lineTension: .2,
+                }]
             },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: '#F8F7FA',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
+            options: {
+                title: { display: false, text: 'Binance', fontSize: 35 },
+                legend: { display: false },
+                layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
+                scales: {
+                    xAxes: [{ display: false, gridLines: {} }],
+                    yAxes: [{ display: false, gridLines: {} }]
+                },
+                tooltips: {
+                    callbacks: { title: function () { } },
+                    displayColors: false,
+                    yPadding: 10,
+                    xPadding: 10,
+                    position: 'nearest',
+                    caretSize: 10,
+                    backgroundColor: tooltipBg,
+                    bodyFontSize: 15,
+                    bodyFontColor: '#303030'
+                }
             }
-        }
-    });
+        });
+    } catch (error) {
+        console.error(`Error loading chart ${chartId}:`, error);
+    }
 }
-printBtcChart();
 
-// -------------------- Ethereum - PAGE --------------------
-const ethData = async () => {
-    const response = await fetch(CryptoLocalData[1].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
 
-let createEthChart;
-async function printEthChart() {
-    let { times, prices } = await ethData();
-    let ethChart = document.getElementById('ethChart').getContext('2d');
-    let gradient = ethChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[1].color}.45)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[1].color}.025)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createEthChart = new Chart(ethChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[1].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: '#F8F7FA',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
+// 2. ONE function call to initialize everything simultaneously
+async function loadAllChartsOnce() {
+    // Promise.all fires all 13 requests concurrently in a single operation
+    await Promise.all([
+        fetchAndDrawChart('btcChart',   0, '#F8F7FA'),
+        fetchAndDrawChart('ethChart',   1, '#F8F7FA'),
+        fetchAndDrawChart('ltcChart',   2, 'rgba(255,255,255,1)'),
+        fetchAndDrawChart('dogeChart',  3, 'rgba(255,255,255,1)'),
+        fetchAndDrawChart('usdtChart',  4, '#F8F7FA'),
+        fetchAndDrawChart('trxChart',   5, 'rgba(255,255,255,1)'),
+        fetchAndDrawChart('usdtTChart', 6, '#F8F7FA'),
+        fetchAndDrawChart('usdcChart',  7, 'rgba(255,255,255,1)'),
+        fetchAndDrawChart('bnbChart',   8, '#F8F7FA'),
+        fetchAndDrawChart('busdChart',  9, 'rgba(255,255,255,1)'),
+        fetchAndDrawChart('avaxChart',  10, 'rgba(255,255,255,1)'),
+        fetchAndDrawChart('busdTChart', 11, 'rgba(255,255,255,1)'),
+        fetchAndDrawChart('solChart',   12, 'rgba(255,255,255,1)')
+    ]);
 }
-printEthChart();
 
-// -------------------- Litecoin - PAGE --------------------
-const ltcData = async () => {
-    const response = await fetch(CryptoLocalData[2].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createLTCChart;
-async function printLTCChart() {
-    let { times, prices } = await ltcData();
-    let ltcChart = document.getElementById('ltcChart').getContext('2d');
-    let gradient = ltcChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[2].color}.55)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[2].color}.1)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createLTCChart = new Chart(ltcChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[2].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: 'rgba(255,255,255,1)',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printLTCChart();
-
-// -------------------- Dogecoin - PAGE --------------------
-const dogeData = async () => {
-    const response = await fetch(CryptoLocalData[3].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createDOGEChart;
-async function printDOGEChart() {
-    let { times, prices } = await dogeData();
-    let dogeChart = document.getElementById('dogeChart').getContext('2d');
-    let gradient = dogeChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[3].color}.55)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[3].color}.1)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createDOGEChart = new Chart(dogeChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[3].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: 'rgba(255,255,255,1)',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printDOGEChart();
-
-// -------------------- Tether - PAGE --------------------
-const usdtData = async () => {
-    const response = await fetch(CryptoLocalData[4].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createUsdtChart;
-async function printUsdtChart() {
-    let { times, prices } = await usdtData();
-    let usdtChart = document.getElementById('usdtChart').getContext('2d');
-    let gradient = usdtChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[4].color}.45)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[4].color}.025)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createUsdtChart = new Chart(usdtChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[4].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: '#F8F7FA',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printUsdtChart();
-
-// -------------------- Tron - PAGE --------------------
-const trxData = async () => {
-    const response = await fetch(CryptoLocalData[5].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createTRXChart;
-async function printTRXChart() {
-    let { times, prices } = await trxData();
-    let trxChart = document.getElementById('trxChart').getContext('2d');
-    let gradient = trxChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[5].color}.55)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[5].color}.1)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createTRXChart = new Chart(trxChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[5].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: 'rgba(255,255,255,1)',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printTRXChart();
-
-// -------------------- Tether (TRX) - PAGE --------------------
-const usdtTData = async () => {
-    const response = await fetch(CryptoLocalData[6].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createUsdtTChart;
-async function printUsdtTChart() {
-    let { times, prices } = await usdtTData();
-    let usdtTChart = document.getElementById('usdtTChart').getContext('2d');
-    let gradient = usdtTChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[6].color}.45)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[6].color}.025)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createUsdtTChart = new Chart(usdtTChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[6].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: '#F8F7FA',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printUsdtTChart();
-
-// -------------------- USD Coin - PAGE --------------------
-const usdcData = async () => {
-    const response = await fetch(CryptoLocalData[7].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createUSDCChart;
-async function printUSDCChart() {
-    let { times, prices } = await usdcData();
-    let usdcChart = document.getElementById('usdcChart').getContext('2d');
-    let gradient = usdcChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[7].color}.55)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[7].color}.1)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createUSDCChart = new Chart(usdcChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[7].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: 'rgba(255,255,255,1)',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printUSDCChart();
-
-// -------------------- BNB - PAGE --------------------
-const bnbData = async () => {
-    const response = await fetch(CryptoLocalData[8].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createBnbChart;
-async function printBnbChart() {
-    let { times, prices } = await bnbData();
-    let bnbChart = document.getElementById('bnbChart').getContext('2d');
-    let gradient = bnbChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[8].color}.55)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[8].color}.1)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createBnbChart = new Chart(bnbChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[8].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: '#F8F7FA',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printBnbChart();
-
-// -------------------- Binance USD - PAGE --------------------
-const busdData = async () => {
-    const response = await fetch(CryptoLocalData[9].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createBUSDChart;
-async function printBUSDChart() {
-    let { times, prices } = await busdData();
-    let busdChart = document.getElementById('busdChart').getContext('2d');
-    let gradient = busdChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[9].color}.55)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[9].color}.1)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createBUSDChart = new Chart(busdChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[9].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: 'rgba(255,255,255,1)',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printBUSDChart();
-
-// -------------------- Avalanche - PAGE --------------------
-const avaxData = async () => {
-    const response = await fetch(CryptoLocalData[10].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createAVAXChart;
-async function printAVAXChart() {
-    let { times, prices } = await avaxData();
-    let avaxChart = document.getElementById('avaxChart').getContext('2d');
-    let gradient = avaxChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[10].color}.55)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[10].color}.1)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createAVAXChart = new Chart(avaxChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[10].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: 'rgba(255,255,255,1)',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printAVAXChart();
-
-// -------------------- Binance USD (ERC20) - PAGE --------------------
-const busdTData = async () => {
-    const response = await fetch(CryptoLocalData[11].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createBUSDTChart;
-async function printBUSDTChart() {
-    let { times, prices } = await busdTData();
-    let busdTChart = document.getElementById('busdTChart').getContext('2d');
-    let gradient = busdTChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[11].color}.55)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[11].color}.1)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createBUSDTChart = new Chart(busdTChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[11].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: 'rgba(255,255,255,1)',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printBUSDTChart();
-
-// -------------------- Solana - PAGE --------------------
-const solData = async () => {
-    const response = await fetch(CryptoLocalData[12].graph);
-    const json = await response.json();
-    const data = json.prices;
-    const times = data.map(item => new Date(item[0]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    const prices = data.map(item => item[1]);
-    return { times, prices };
-};
-
-let createSOLChart;
-async function printSOLChart() {
-    let { times, prices } = await solData();
-    let solChart = document.getElementById('solChart').getContext('2d');
-    let gradient = solChart.createLinearGradient(0, 0, 0, 500);
-    gradient.addColorStop(0, `rgba(${CryptoLocalData[12].color}.55)`);
-    gradient.addColorStop(.425, `rgba(${CryptoLocalData[12].color}.1)`);
-    Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
-    Chart.defaults.global.defaultFontSize = 12;
-    createSOLChart = new Chart(solChart, {
-        type: 'line',
-        data: {
-            labels: times,
-            datasets: [{
-                label: '$',
-                data: prices,
-                backgroundColor: gradient,
-                borderColor: `rgba(${CryptoLocalData[12].color} 1)`,
-                borderJoinStyle: 'round',
-                borderCapStyle: 'round',
-                borderWidth: 3,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                lineTension: .2,
-            }]
-        },
-        options: {
-            title: { display: false, text: 'Binance', fontSize: 35 },
-            legend: { display: false },
-            layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } },
-            scales: {
-                xAxes: [{ display: false, gridLines: {} }],
-                yAxes: [{ display: false, gridLines: {} }]
-            },
-            tooltips: {
-                callbacks: { title: function () { } },
-                displayColors: false,
-                yPadding: 10,
-                xPadding: 10,
-                position: 'nearest',
-                caretSize: 10,
-                backgroundColor: 'rgba(255,255,255,1)',
-                bodyFontSize: 15,
-                bodyFontColor: '#303030'
-            }
-        }
-    });
-}
-printSOLChart();
+// 3. Execute
+loadAllChartsOnce();
