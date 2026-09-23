@@ -359,13 +359,10 @@ function checkStatus(response) {
     const btcData = async () => {
         const response = await fetch(CryptoLocalData[0].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createBtcChart;
@@ -432,13 +429,10 @@ function checkStatus(response) {
     const ethData = async () => {
         const response = await fetch(CryptoLocalData[1].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createEthChart;
@@ -505,13 +499,10 @@ function checkStatus(response) {
     const ltcData = async () => {
         const response = await fetch(CryptoLocalData[2].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createLTCChart;
@@ -578,13 +569,10 @@ function checkStatus(response) {
     const dogeData = async () => {
         const response = await fetch(CryptoLocalData[3].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createDOGEChart;
@@ -651,13 +639,10 @@ function checkStatus(response) {
     const usdtData = async () => {
         const response = await fetch(CryptoLocalData[4].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createUsdtChart;
@@ -724,13 +709,10 @@ function checkStatus(response) {
     const trxData = async () => {
         const response = await fetch(CryptoLocalData[5].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createTRXChart;
@@ -797,13 +779,10 @@ function checkStatus(response) {
     const usdtTData = async () => {
         const response = await fetch(CryptoLocalData[6].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createUsdtTChart;
@@ -870,13 +849,10 @@ function checkStatus(response) {
     const usdcData = async () => {
         const response = await fetch(CryptoLocalData[7].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createUSDCChart;
@@ -943,13 +919,10 @@ function checkStatus(response) {
     const bnbData = async () => {
         const response = await fetch(CryptoLocalData[8].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createBnbChart;
@@ -1016,13 +989,10 @@ function checkStatus(response) {
     const busdData = async () => {
         const response = await fetch(CryptoLocalData[9].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createBUSDChart;
@@ -1089,13 +1059,10 @@ function checkStatus(response) {
     const avaxData = async () => {
         const response = await fetch(CryptoLocalData[10].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createAVAXChart;
@@ -1162,18 +1129,15 @@ function checkStatus(response) {
     const busdTData = async () => {
         const response = await fetch(CryptoLocalData[11].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createBUSDTChart;
     async function printBUSDTChart() {
-        let { times, prices } = await busdData()
+        let { times, prices } = await busdTData() // Fixed bug: was calling busdData() instead of busdTData()
         let busdTChart = document.getElementById('busdTChart').getContext('2d');
         let gradient = busdTChart.createLinearGradient(0, 0, 0, 500);
         gradient.addColorStop(0, `rgba(${CryptoLocalData[11].color}.55)`);
@@ -1235,13 +1199,10 @@ function checkStatus(response) {
     const solData = async () => {
         const response = await fetch(CryptoLocalData[12].graph);
         const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        return {
-            times,
-            prices
-        }
+        const data = json.prices;
+        const times = data.map(item => new Date(item[0]).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        const prices = data.map(item => item[1]);
+        return { times, prices };
     }
 	// 
 	let createSOLChart;
@@ -1300,4 +1261,4 @@ function checkStatus(response) {
     }; printSOLChart()
     // -------------------- 
 //  -------------------- -------------------- -------------------- 
-//  -------------------- -------------------- -------------------- 
+//  -------------------- -------------------- --------------------
